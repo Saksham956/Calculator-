@@ -1,0 +1,55 @@
+from tkinter import*
+import winsound
+root=Tk()
+root.title("Calculator")
+root.geometry("450x530")
+root.resizable(False,False)
+root.configure(bg="#17161b")
+equation=""
+def show(value):
+    global equation
+    equation+=value
+    label_result.config(text=equation)
+def clear():
+    global equation
+    equation=""
+    label_result.config(text=equation)
+def calculate():
+    global equation
+    reslut=""
+    if equation !="":
+        try:
+            result=eval(equation)
+        except:
+            result="error"
+            equation=""
+    label_result.config(text=result)
+    winsound.PlaySound("path_to_sound_file.wav", winsound.SND_ASYNC)
+
+label_result=Label(root,width=40,height=2,text="",font=("arial",30),bg="#17161b",fg="white")
+label_result.pack()
+Button(root,text="C",width=4,height=1,font=("arial",30,"bold"),bd=1,fg="#000000",bg="light blue",command=lambda:clear()).place(x=13,y=115)
+Button(root,text="/",width=4,height=1,font=("arial",30,"bold"),bd=1,fg="#000000",bg="#808080",command=lambda:show("/")).place(x=120,y=115)
+Button(root,text="%",width=4,height=1,font=("arial",30,"bold"),bd=1,fg="#000000",bg="#808080",command=lambda:show("%")).place(x=227,y=115)
+Button(root,text="",width=4,height=1,font=("arial",30,"bold"),bd=1,fg="#000000",bg="#808080",command=lambda:show("")).place(x=334,y=115)
+
+
+Button(root,text="7",width=4,height=1,font=("arial",30,"bold"),bd=1,fg="#000000",bg="#808080",command=lambda:show("7")).place(x=13,y=195)
+Button(root,text="8",width=4,height=1,font=("arial",30,"bold"),bd=1,fg="#000000",bg="#808080",command=lambda:show("8")).place(x=120,y=195)
+Button(root,text="9",width=4,height=1,font=("arial",30,"bold"),bd=1,fg="#000000",bg="#808080",command=lambda:show("9")).place(x=227,y=195)
+Button(root,text="-",width=4,height=1,font=("arial",30,"bold"),bd=1,fg="#000000",bg="#808080",command=lambda:show("-")).place(x=334,y=195)
+
+Button(root,text="5",width=4,height=1,font=("arial",30,"bold"),bd=1,fg="#000000",bg="#808080",command=lambda:show("5")).place(x=120,y=275)
+Button(root,text="4",width=4,height=1,font=("arial",30,"bold"),bd=1,fg="#000000",bg="#808080",command=lambda:show("4")).place(x=13,y=275)
+Button(root,text="6",width=4,height=1,font=("arial",30,"bold"),bd=1,fg="#000000",bg="#808080",command=lambda:show("6")).place(x=227,y=275)
+Button(root,text="+",width=4,height=1,font=("arial",30,"bold"),bd=1,fg="#000000",bg="#808080",command=lambda:show("+")).place(x=334,y=275)
+
+Button(root,text="1",width=4,height=1,font=("arial",30,"bold"),bd=1,fg="#000000",bg="#808080",command=lambda:show("1")).place(x=13,y=355)
+Button(root,text="2",width=4,height=1,font=("arial",30,"bold"),bd=1,fg="#000000",bg="#808080",command=lambda:show("2")).place(x=120,y=355)
+Button(root,text="3",width=4,height=1,font=("arial",30,"bold"),bd=1,fg="#000000",bg="#808080",command=lambda:show("3")).place(x=227,y=355)
+Button(root,text="0",width=8,height=1,font=("arial",30,"bold"),bd=1,fg="#000000",bg="#808080",command=lambda:show("0")).place(x=13,y=435)
+Button(root,text=".",width=9,height=1,font=("arial",30,"bold"),bd=1,fg="#000000",bg="#808080",command=lambda:show(".")).place(x=214,y=435)
+Button(root,text="=",width=4,height=1,font=("arial",30,"bold"),bd=1,fg="#000000",bg="#fe9037",command=lambda:calculate()).place(x=334,y=355)
+
+
+root.mainloop()
